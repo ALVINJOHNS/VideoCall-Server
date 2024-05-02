@@ -7,6 +7,7 @@ socket.on('availableOffers',offers=>{
 
 //someone just made a new offer and we're already here - call createOfferEls
 socket.on('newOfferAwaiting',offers=>{
+    console.log('newOfferAwaiting',offers)
     createOfferEls(offers)
 })
 

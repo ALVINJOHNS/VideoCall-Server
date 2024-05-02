@@ -1,12 +1,12 @@
-const userName = "Rob-"+Math.floor(Math.random() * 100000)
+const meetId = "Rob-"+Math.floor(Math.random() * 100000)
 const password = "x";
-document.querySelector('#user-name').innerHTML = userName;
+document.querySelector('#user-name').innerHTML = meetId;
 
 //if trying it on a phone, use this instead...
-// const socket = io.connect('https://LOCAL-DEV-IP-HERE:8181/',{
-const socket = io.connect('https://localhost:8181/',{
+ const socket = io.connect('https://192.168.1.54:8181/',{
+//const socket = io.connect('https://localhost:8181/',{
     auth: {
-        userName,password
+        meetId,password
     }
 })
 
@@ -69,7 +69,6 @@ const answerOffer = async(offerObj)=>{
     })
     console.log(offerIceCandidates)
 }
-
 const addAnswer = async(offerObj)=>{
     //addAnswer is called in socketListeners when an answerResponse is emitted.
     //at this point, the offer and answer have been exchanged!
@@ -95,12 +94,13 @@ const fetchUserMedia = ()=>{
     })
 }
 
-const createPeerConnection = (offerObj)=>{
+const  createPeerConnection = (offerObj)=>{
     return new Promise(async(resolve, reject)=>{
         //RTCPeerConnection is the thing that creates the connection
         //we can pass a config object, and that config object can contain stun servers
         //which will fetch us ICE candidates
         peerConnection = await new RTCPeerConnection(peerConfiguration)
+        console.log("peer",peerConnection)
         remoteStream = new MediaStream()
         remoteVideoEl.srcObject = remoteStream;
 
@@ -121,7 +121,7 @@ const createPeerConnection = (offerObj)=>{
             if(e.candidate){
                 socket.emit('sendIceCandidateToSignalingServer',{
                     iceCandidate: e.candidate,
-                    iceUserName: userName,
+                    iceUserName: meetId,
                     didIOffer,
                 })    
             }

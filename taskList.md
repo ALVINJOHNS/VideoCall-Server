@@ -4,6 +4,10 @@
 3. mkcert create-cert
 4. OPTIONAL: to run it locally, update the files with your local IP
 
+Run
+1. ipconfig
+2. nodemon .\server.js
+
 # Steps in a WebRTC app
 1. getUserMedia() is run - CLIENT1/Init/Caller/Offerer
 2. CLIENT1 creates an RTCPeerConnection object called peerConnection

@@ -19,13 +19,7 @@ const expressServer = https.createServer({key, cert}, app);
 //create our socket.io server... it will listen to our express port
 const io = socketio(expressServer,{
     cors: {
-        origin: [
-           // "https://localhost",
-             'https://192.168.1.20',
-             'http://localhost:3000',
-             'http://192.168.1.46:3000/'
-               //if using a phone or another computer
-        ],
+        origin: "*",
         methods: ["GET", "POST"]
     }
 });

@@ -21,7 +21,7 @@ const io = socketio(expressServer,{
     cors: {
         origin: [
            // "https://localhost",
-             'https://192.168.1.54',
+             'https://192.168.1.20',
              'http://localhost:3000',
              'http://192.168.1.46:3000/'
                //if using a phone or another computer
@@ -151,4 +151,10 @@ io.on('connection',(socket)=>{
         //send out to all connected sockets EXCEPT the caller
         socket.broadcast.emit('broadcastMessage',message)
     })
+
+    socket.on('caption',caption=>{
+        console.log(caption)
+        socket.broadcast.emit('broadcastCaption',caption)
+    }
+    )
 })

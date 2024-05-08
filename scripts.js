@@ -3,8 +3,8 @@ const password = "x";
 document.querySelector('#user-name').innerHTML = meetId;
 
 //if trying it on a phone, use this instead...
- const socket = io.connect('https://192.168.194.1:8181/',{
-//const socket = io.connect('https://localhost:8181/',{
+// const socket = io.connect('https://192.168.194.1:8181/',{
+const socket = io.connect('https://localhost:8181/',{
     auth: {
         meetId,password
     }
